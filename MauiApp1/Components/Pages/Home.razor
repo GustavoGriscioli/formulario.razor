@@ -1,0 +1,39 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+@using MauiApp1.Components.model
+
+<h1>Formulário</h1>
+
+<EditForm Model="@novoCliente" OnValidSubmit="SalvarCliente">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="col-5">
+        <label for="nome">Nome:</label> <br>
+        <InputText class="form-control" id="nome" @bind-Value="novoCliente.nome"/>
+
+        <label for="cpf">Cpf:</label> <br>
+        <InputText class="form-control" id="cpf" @bind-Value="novoCliente.cpf"/>
+
+        <label for="telefone">Telefone:</label> <br>
+        <InputText class="form-control" id="telefone" @bind-Value="novoCliente.telefone"/>
+    </div> <br><br>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <button class="btn btn-secondary" @onclick="Lista">Lista</button>
+
+</EditForm>
+
+@code{
+    Cliente novoCliente = new Cliente();
+
+    private void SalvarCliente()
+    {
+        Cliente.UltimoCliente = novoCliente;
+    }
+
+    private void Lista()
+    {
+        Navigation.NavigateTo("/Lista");
+    }
+}
