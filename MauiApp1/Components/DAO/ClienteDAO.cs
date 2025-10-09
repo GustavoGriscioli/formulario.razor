@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySqlConnector;
 
 namespace MauiApp1.Components.DAO
 {
@@ -14,11 +15,15 @@ namespace MauiApp1.Components.DAO
             {
                 //string de conexão com o banco de dados MySQL
                 string connectionString = "server=localhost;user=root;password=root;database=gatinhos";
-                
-                await using var conn = new MySqlConnector(connectionString)
+
+                await using var conn = new MySqlConnection(connectionString);
+
+                await conn.OpenAsync();
+
+                string sql = "INSERT INTO tb_cliente (nome,cpf,telefone) VALUES(@nome,@telefone,@telefone)";
             }
 
-            catch
+            catch (Exception ex)
             {
 
             }
