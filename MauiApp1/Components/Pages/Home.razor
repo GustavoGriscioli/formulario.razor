@@ -1,6 +1,8 @@
 ﻿@page "/"
 @inject NavigationManager Navigation
 @using MauiApp1.Components.model
+@using MauiApp1.Components.DAO
+
 
 <h1>Formulário</h1>
 <h2>Aula de .Net Maui</h2>
@@ -28,9 +30,10 @@
 @code{
     Cliente novoCliente = new Cliente();
 
-    private void SalvarCliente()
+    private async Task SalvarCliente()
     {
-        Cliente.UltimoCliente = novoCliente;
+        //Cliente.UltimoCliente = novoCliente;
+        bool returno = await new ClienteDAO().SalvarCliente(novoCliente);
     }
 
     private void Lista()
